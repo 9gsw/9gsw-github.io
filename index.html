@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>9gsw.1 | القناة الرسمية</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Cairo) -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -13,12 +16,12 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#181915',
-                            card: '#222520',
-                            green: '#2c5e4f',
-                            lightgreen: '#3e7d6b',
-                            cream: '#e6c896',
-                            hair: '#4a3728'
+                            dark: '#181915',       
+                            card: '#222520',       
+                            green: '#2c5e4f',      
+                            lightgreen: '#3e7d6b', 
+                            cream: '#e6c896',      
+                            hair: '#4a3728'        
                         }
                     }
                 }
@@ -26,25 +29,47 @@
         }
     </script>
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #121310; color: #f3f4f6; }
-        .cream-gradient-text { background: linear-gradient(135deg, #fcead0 0%, #e6c896 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .brand-gradient-bg { background: linear-gradient(135deg, #2c5e4f 0%, #1e4237 100%); }
-        .accent-gradient-bg { background: linear-gradient(135deg, #e6c896 0%, #c49d60 100%); }
-        .card-glow:hover { box-shadow: 0 0 25px rgba(230, 200, 150, 0.2); border-color: rgba(230, 200, 150, 0.4); }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #121310;
+            color: #f3f4f6;
+        }
+        .cream-gradient-text {
+            background: linear-gradient(135deg, #fcead0 0%, #e6c896 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .brand-gradient-bg {
+            background: linear-gradient(135deg, #2c5e4f 0%, #1e4237 100%);
+        }
+        .accent-gradient-bg {
+            background: linear-gradient(135deg, #e6c896 0%, #c49d60 100%);
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 25px rgba(230, 200, 150, 0.2);
+            border-color: rgba(230, 200, 150, 0.4);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #181915; }
+        ::-webkit-scrollbar-thumb { background: #2c5e4f; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e6c896; }
     </style>
 </head>
 <body class="bg-brand-dark text-gray-100 min-h-screen flex flex-col justify-between selection:bg-brand-cream selection:text-brand-dark">
 
+    <!-- شريط الملاحة (Navbar) -->
     <nav class="fixed top-0 left-0 w-full bg-brand-dark/90 backdrop-blur-md z-50 border-b border-gray-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
+                <!-- الشعار مع الصورة -->
                 <div class="flex items-center space-x-3 space-x-reverse">
                     <div class="w-11 h-11 rounded-xl p-0.5 accent-gradient-bg shadow-md">
-                        <img id="logo-img" src="img"شعار 9gsw.1" class="w-full h-full rounded-[10px] object-cover">
+                        <img id="logo-img" src="img" alt="شعار 9gsw.1" class="w-full h-full rounded-[10px] object-cover">
                     </div>
                     <span class="text-xl font-black tracking-wide text-white">9gsw<span class="cream-gradient-text">.1</span></span>
                 </div>
 
+                <!-- روابط القائمة -->
                 <div class="hidden md:flex items-center space-x-8 space-x-reverse text-sm font-semibold">
                     <a href="#home" class="hover:text-brand-cream transition-colors">الرئيسية</a>
                     <a href="#about" class="hover:text-brand-cream transition-colors">عن القناة</a>
@@ -52,61 +77,318 @@
                     <a href="#contact" class="hover:text-brand-cream transition-colors">التواصل والأعمال</a>
                 </div>
 
+                <!-- زر الاشتراك -->
                 <div class="hidden md:block">
                     <a href="https://youtube.com/@9gsw.1?si=CQqjYhO_rdqPuMtF" target="_blank" rel="noopener noreferrer" class="accent-gradient-bg text-brand-dark font-black px-6 py-2.5 rounded-full hover:opacity-90 transition-all transform hover:scale-105 inline-flex items-center space-x-2 space-x-reverse shadow-lg shadow-brand-cream/10">
                         <i class="fa-brands fa-youtube text-lg"></i>
                         <span>اشترك الآن</span>
                     </a>
                 </div>
+
+                <!-- زر القائمة للهواتف -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-400 hover:text-white focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
+        </div>
+
+        <!-- قائمة الهواتف -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-gray-800 px-4 pt-2 pb-6 space-y-3 text-center">
+            <a href="#home" class="block py-2 text-gray-300 hover:text-brand-cream font-semibold">الرئيسية</a>
+            <a href="#about" class="block py-2 text-gray-300 hover:text-brand-cream font-semibold">عن القناة</a>
+            <a href="#videos" class="block py-2 text-gray-300 hover:text-brand-cream font-semibold">الفيديوهات</a>
+            <a href="#contact" class="block py-2 text-gray-300 hover:text-brand-cream font-semibold">التواصل والأعمال</a>
+            <a href="https://youtube.com/@9gsw.1?si=CQqjYhO_rdqPuMtF" target="_blank" rel="noopener noreferrer" class="inline-block w-full accent-gradient-bg text-brand-dark font-black py-3 rounded-xl mt-2">
+                اشترك في القناة
+            </a>
         </div>
     </nav>
 
-    <section id="home" class="pt-32 pb-20 relative overflow-hidden">
+    <!-- القسم الرئيسي (Hero Section) -->
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-28 relative overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-brand-green/20 rounded-full blur-3xl -z-10"></div>
+        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-12 items-center">
+                
                 <div class="text-center md:text-right space-y-6">
-                    <h1 class="text-4xl sm:text-5xl font-black">أهلاً بك في عالم <span class="cream-gradient-text">9gsw.1</span></h1>
-                    <p class="text-gray-400">صانع محتوى على يوتيوب، أشارككم لقطات مضحكة عن محتوى المحقق كونان .</p>
+                    <div class="inline-flex items-center space-x-2 space-x-reverse bg-brand-card border border-brand-green/40 rounded-full px-4 py-1.5 text-xs text-brand-cream font-semibold">
+                        <span class="flex h-2 w-2 relative">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-cream opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-cream"></span>
+                        </span>
+                        <span>مرحباً بكم في القناة الرسمية 👋</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight">
+                        أهلاً بك في عالم <span class="cream-gradient-text">9gsw.1</span>
+                    </h1>
+                    
+                    <p class="text-gray-400 text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
+                        صانع محتوى على يوتيوب، أشارككم أفضل المقاطع المضحكة عن المحقق. انضم إلى مجتمع القناة وتابع أحدث المقاطع الحصرية!
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-3 sm:space-y-0 sm:space-x-4 sm:space-x-reverse">
+                        <a href="https://youtube.com/@9gsw.1?si=CQqjYhO_rdqPuMtF" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto accent-gradient-bg text-brand-dark font-black px-8 py-3.5 rounded-xl hover:opacity-90 transition-all shadow-lg shadow-brand-cream/10 text-center flex items-center justify-center space-x-2 space-x-reverse">
+                            <i class="fa-brands fa-youtube text-xl"></i>
+                            <span>زيارة القناة على YouTube</span>
+                        </a>
+                        <a href="#videos" class="w-full sm:w-auto bg-brand-card hover:bg-gray-800 border border-gray-800 text-gray-200 font-semibold px-8 py-3.5 rounded-xl transition-all text-center">
+                            تصفح المقاطع
+                        </a>
+                    </div>
                 </div>
-                <div class="flex justify-center">
-                    <img src="img" class="w-72 h-72 rounded-3xl border-2 border-brand-cream/30 object-cover shadow-2xl">
+
+                <!-- صورة القناة -->
+                <div class="flex justify-center relative">
+                    <div class="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
+                        <div class="absolute inset-0 brand-gradient-bg rounded-3xl rotate-6 opacity-40 blur-lg"></div>
+                        <div class="absolute inset-0 bg-brand-card border-2 border-brand-cream/30 rounded-3xl overflow-hidden shadow-2xl">
+                            <img id="hero-img" src="img" alt="صورة اليوتيوبر 9gsw.1" class="w-full h-full object-cover">
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <section id="videos" class="py-20">
+    <!-- قسم الإحصائيات وعن القناة -->
+    <section id="about" class="py-20 bg-brand-card/40 border-y border-gray-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-black text-white mb-8">أحدث <span class="cream-gradient-text">الفيديوهات</span></h2>
-            <div id="videos-container" class="grid md:grid-cols-3 gap-8"></div>
+            
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <h2 class="text-3xl font-black text-white">عن قناة <span class="cream-gradient-text">9gsw.1</span></h2>
+                <p class="text-gray-400">نستمر بدعمكم ومتابعتكم الشغوفة بتقديم أفضل محتوى مرئي</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="bg-brand-card border border-gray-800 p-6 rounded-2xl">
+                    <i class="fa-brands fa-youtube text-3xl text-brand-cream mb-3"></i>
+                    <h3 class="text-3xl font-black text-white mb-1">9gsw.1</h3>
+                    <p class="text-gray-400 text-sm font-semibold">اسم القناة</p>
+                </div>
+                <div class="bg-brand-card border border-gray-800 p-6 rounded-2xl">
+                    <i class="fa-solid fa-play text-3xl text-brand-cream mb-3"></i>
+                    <h3 class="text-3xl font-black text-white mb-1">المحقق كونان</h3>
+                    <p class="text-gray-400 text-sm font-semibold">محتوى مضحك </p>
+                </div>
+                <div class="bg-brand-card border border-gray-800 p-6 rounded-2xl">
+                    <i class="fa-solid fa-bolt text-3xl text-brand-cream mb-3"></i>
+                    <h3 class="text-3xl font-black text-white mb-1">تلقائي</h3>
+                    <p class="text-gray-400 text-sm font-semibold">تحديث الفيديوهات</p>
+                </div>
+                <div class="bg-brand-card border border-gray-800 p-6 rounded-2xl">
+                    <i class="fa-solid fa-heart text-3xl text-brand-cream mb-3"></i>
+                    <h3 class="text-3xl font-black text-white mb-1">60%</h3>
+                    <p class="text-gray-400 text-sm font-semibold">حب المتابعين</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
+    <!-- قسم الفيديوهات -->
+    <section id="videos" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div class="space-y-2 mb-4 md:mb-0">
+                    <h2 class="text-3xl font-black text-white">أحدث <span class="cream-gradient-text">الفيديوهات</span></h2>
+                    <p class="text-gray-400">تُجلب الفيديوهات تلقائياً من قناتك</p>
+                </div>
+                <a href="https://youtube.com/@9gsw.1?si=CQqjYhO_rdqPuMtF" target="_blank" rel="noopener noreferrer" class="text-brand-cream hover:underline font-bold inline-flex items-center space-x-2 space-x-reverse">
+                    <span>الانتقال للقناة مباشرة</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+            </div>
+
+            <!-- حاوية عرض الفيديوهات -->
+            <div id="videos-container" class="grid md:grid-cols-3 gap-8">
+                <div class="col-span-3 text-center py-12">
+                    <i class="fa-solid fa-spinner animate-spin text-4xl text-brand-cream mb-3"></i>
+                    <p class="text-gray-400">جاري الاتصال بـ YouTube وجلب أحدث مقاطع قناتك تلقائياً...</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- قسم التواصل والأعمال (Contact Section) -->
+    <section id="contact" class="py-20 bg-brand-card/40 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="bg-brand-card border border-gray-800 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-brand-green/20 rounded-full blur-2xl"></div>
+
+                <div class="text-center space-y-3 mb-10">
+                    <h2 class="text-3xl font-black text-white">تواصل مع <span class="cream-gradient-text">9gsw.1</span></h2>
+                    <p class="text-gray-400 text-sm sm:text-base">للإعلانات أو التعاون التجارى أو الاستفسارات الخاصة بالقناة</p>
+                </div>
+
+                <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-300 mb-2">الاسم الكامل</label>
+                            <input type="text" required placeholder="أدخل اسمك" class="w-full bg-brand-dark border border-gray-800 rounded-xl px-4 py-3 text-gray-100 focus:outline-none focus:border-brand-cream transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-300 mb-2">البريد الإلكتروني</label>
+                            <input type="email" required placeholder="example@domain.com" class="w-full bg-brand-dark border border-gray-800 rounded-xl px-4 py-3 text-gray-100 focus:outline-none focus:border-brand-cream transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-2">موضوع الرسالة</label>
+                        <input type="text" required placeholder="رعاية / إعلان / استفسار" class="w-full bg-brand-dark border border-gray-800 rounded-xl px-4 py-3 text-gray-100 focus:outline-none focus:border-brand-cream transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-2">تفاصيل الرسالة</label>
+                        <textarea rows="4" required placeholder="اكتب تفاصيل الرسالة هنا..." class="w-full bg-brand-dark border border-gray-800 rounded-xl px-4 py-3 text-gray-100 focus:outline-none focus:border-brand-cream transition-colors resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full accent-gradient-bg text-brand-dark font-black py-4 rounded-xl hover:opacity-90 transition-all shadow-lg shadow-brand-cream/10">
+                        إرسال الرسالة
+                    </button>
+                </form>
+
+                <div id="successMessage" class="hidden mt-6 p-4 bg-emerald-950/60 border border-emerald-500/50 text-emerald-300 rounded-xl text-center">
+                    تم إرسال رسالتك بنجاح! سيتم التواصل معك قريباً.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="bg-brand-dark border-t border-gray-900 py-8 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <div class="flex justify-center space-x-4 space-x-reverse text-xl text-brand-cream">
+                <a href="https://youtube.com/@9gsw.1?si=CQqjYhO_rdqPuMtF" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+            <p>© <span id="year"></span> جميع الحقوق محفوظة لـ <span class="text-brand-cream font-semibold">9gsw.1</span>.</p>
+        </div>
+    </footer>
+
+    <!-- برمجة JavaScript -->
     <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        /* ==========================================
+           ربط قناتك المباشر مع YouTube API
+           ========================================== */
         const YOUTUBE_API_KEY = "AIzaSyChilk8NpORgWIgOiavIQdZ8uECj9unKdk";
         const CHANNEL_ID = "UCiBIjzAyXhLLKL_gQa95idA"; 
 
-        document.addEventListener("DOMContentLoaded", async () => {
-            const container = document.getElementById('videos-container');
-            try {
-                const res = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=6&type=video`);
-                const data = await res.json();
-                if (data.items && data.items.length) {
-                    container.innerHTML = data.items.map(item => `
-                        <div class="bg-brand-card border border-gray-800 rounded-2xl overflow-hidden card-glow">
-                            <img src="${item.snippet.thumbnails.high.url}" class="w-full aspect-video object-cover">
-                            <div class="p-5 space-y-3">
-                                <h3 class="font-bold text-white line-clamp-2">${item.snippet.title}</h3>
-                                <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target="_blank" class="inline-block bg-red-600 text-white text-xs font-bold px-4 py-2 rounded-full">تشغيل على YouTube</a>
-                            </div>
-                        </div>
-                    `).join('');
-                }
-            } catch (e) {
-                console.error(e);
-            }
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchVideos();
         });
+
+        async function fetchVideos() {
+            const container = document.getElementById('videos-container');
+
+            try {
+                const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=6&type=video`;
+                
+                const response = await fetch(searchUrl);
+                const data = await response.json();
+
+                if (data.items && data.items.length > 0) {
+                    const videos = data.items
+                        .filter(item => item.id && item.id.videoId)
+                        .map(item => ({
+                            id: item.id.videoId,
+                            title: item.snippet.title,
+                            thumbnail: item.snippet.thumbnails.high ? item.snippet.thumbnails.high.url : item.snippet.thumbnails.medium.url,
+                            publishedAt: new Date(item.snippet.publishedAt).toLocaleDateString('ar-EG')
+                        }));
+
+                    if (videos.length > 0) {
+                        renderVideos(videos);
+                    } else {
+                        showDirectChannelButton();
+                    }
+                } else {
+                    showDirectChannelButton();
+                }
+            } catch (error) {
+                console.error("خطأ في جلب الفيديوهات من يوتيوب:", error);
+                showDirectChannelButton();
+            }
+        }
+
+        function showDirectChannelButton() {
+            const container = document.getElementById('videos-container');
+            container.innerHTML = `
+                <div class="col-span-3 bg-brand-card border border-brand-green/50 rounded-3xl p-10 text-center space-y-6">
+                    <div class="w-20 h-20 mx-auto accent-gradient-bg rounded-full flex items-center justify-center text-brand-dark text-3xl shadow-xl">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    <div class="max-w-md mx-auto space-y-2">
+                        <h3 class="text-2xl font-bold text-white">تصفح أحدث الفيديوهات مباشرة</h3>
+                        <p class="text-gray-400 text-sm">اضغط على الزر أدناه للانتقال لمشاهدة جميع الفيديوهات الحصرية على قناة 9gsw.1 مباشرة</p>
+                    </div>
+                    <a href="https://youtube.com/@9gsw.1?si=CQqjYhO_rdqPuMtF" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-3 space-x-reverse accent-gradient-bg text-brand-dark font-black px-8 py-4 rounded-xl hover:opacity-90 transition-all shadow-lg">
+                        <i class="fa-brands fa-youtube text-2xl"></i>
+                        <span>شاهد مقاطع 9gsw.1 على YouTube</span>
+                    </a>
+                </div>
+            `;
+        }
+
+        function renderVideos(videos) {
+            const container = document.getElementById('videos-container');
+            container.innerHTML = videos.map(video => {
+                const youtubeVideoUrl = `https://www.youtube.com/watch?v=${video.id}`;
+                return `
+                <div class="bg-brand-card border border-gray-800 rounded-2xl overflow-hidden transition-all duration-300 card-glow group">
+                    <div class="relative overflow-hidden aspect-video bg-gray-900">
+                        <img src="${video.thumbnail}" alt="${video.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <a href="${youtubeVideoUrl}" target="_blank" rel="noopener noreferrer" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold px-5 py-2.5 rounded-full shadow-lg transform hover:scale-105 transition-all text-sm">
+                                <i class="fa-brands fa-youtube text-xl"></i>
+                                <span>تشغيل على YouTube</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <span class="text-xs bg-brand-green/30 text-brand-cream px-3 py-1 rounded-full border border-brand-green/50 font-semibold">9gsw.1</span>
+                        <h3 class="text-base font-bold text-white group-hover:text-brand-cream transition-colors line-clamp-2" dir="auto">${video.title}</h3>
+                        <div class="flex justify-between items-center text-xs text-gray-500 pt-2 border-t border-gray-800">
+                            <a href="${youtubeVideoUrl}" target="_blank" rel="noopener noreferrer" class="hover:text-brand-cream transition-colors flex items-center gap-1 font-semibold">
+                                <i class="fa-brands fa-youtube text-red-500"></i>
+                                <span>مشاهدة المقطع</span>
+                            </a>
+                            <span>${video.publishedAt}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+
+            form.reset();
+            successMessage.classList.remove('hidden');
+
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 5000);
+        }
     </script>
 </body>
 </html>
+
