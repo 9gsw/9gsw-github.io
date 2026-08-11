@@ -151,13 +151,6 @@
             </div>
         </div>
     </section>
-    <section class="flex flex-col items-center justify-center">
-        عداد المشتركين 
-<div class="inline-flex flex-col items-center justify-center p-4 bg-gray-800/50 rounded-2xl border border-gray-700 min-w-[120px]">
-    <h3 id="sub-count" class="text-2xl font-black text-white">---</h3>
-    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">مشترك</span>
-</div>
-</section>
 
 
     <!-- قسم الفيديوهات -->
@@ -391,50 +384,6 @@
             }).join('');
         }
 
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const form = document.getElementById('contactForm');
-            const successMessage = document.getElementById('successMessage');
-
-            form.reset();
-            successMessage.classList.remove('hidden');
-
-            setTimeout(() => {
-                successMessage.classList.add('hidden');
-            }, 5000);
-        }
-    </script>
-    <div id="google_translate_element"></div>
-
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'ar', includedLanguages: 'ar,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script>
-    async function fetchSubCount() {
-        const API_KEY = "AIzaSyChilk8NpORgWIgOiavIQdZ8uECj9unKdk";
-        const CHANNEL_ID = "UCiBIjzAyXhLLKL_gQa95idA";
-        const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`;
-
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            
-            if (data.items && data.items.length > 0) {
-                const subCount = data.items[0].statistics.subscriberCount;
-                document.getElementById('sub-count').textContent = parseInt(subCount).toLocaleString();
-            }
-        } catch (error) {
-            console.error("خطأ في جلب المشتركين:", error);
-            document.getElementById('sub-count').textContent = "خطأ";
-        }
-    }
-
-    // تشغيل الدالة عند تحميل الصفحة
-    fetchSubCount();
-</script>
 
 </body>
 </html>
