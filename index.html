@@ -383,8 +383,20 @@
             `;
             }).join('');
         }
+function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
 
+            form.reset();
+            successMessage.classList.remove('hidden');
 
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
+
 
